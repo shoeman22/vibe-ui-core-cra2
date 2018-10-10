@@ -59,3 +59,21 @@ typings/
 
 # next.js build output
 .next
+
+# built component library
+/lib
+
+# built docs
+/docs
+
+# don't commit build folder
+/build/*
+
+# Generated component data
+/config/componentData.js
+
+# VSCode launch configuration
+launch.json
+
+# Webstorm
+.idea

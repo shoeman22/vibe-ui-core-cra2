@@ -1,0 +1,32 @@
+language: node_js
+node_js:
+  - 10
+cache:
+  directories:
+    - node_modules
+script:
+  - npm run coverage
+  - npm run build:docs
+  - npm run build:lib
+after_script:
+  - COVERALLS_REPO_TOKEN=$coveralls_repo_token npm run coveralls
+
+before_deploy:
+  - cd ./lib
+
+deploy:
+  - provider: npm
+    skip_cleanup: true
+    email: andy@leftshoedevelopment.com
+    api_key: $npm_token
+    on:
+      tags: true
+      repo: shoeman22/vibe-ui-core-cra2
+  - provider: pages
+    skip_cleanup: true
+    github_token: $github_token
+    local_dir: build
+    on:
+      branch: master
+      tags: false
+      repo: shoeman22/vibe-ui-core-cra2
